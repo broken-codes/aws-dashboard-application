@@ -18,7 +18,7 @@
 	</properties>
 
 	<modules>
-		<module>ada-ui</module>
+		<module>ada-frontend</module>
 		<module>ada-api</module>
 	</modules>
 
