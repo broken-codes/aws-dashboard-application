@@ -10,19 +10,27 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { DInstanceStateCounterComponent } from './components/compute/ec2/d-instance-state-counter/d-instance-state-counter.component';
+import { IconsProviderModuleModule } from './modules/icons-provider-module/icons-provider-module.module';
+import { NgZorroModuleModule } from './modules/ng-zorro-module/ng-zorro-module.module';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent,
+    DInstanceStateCounterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    IconsProviderModuleModule,
+    NgZorroModuleModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
