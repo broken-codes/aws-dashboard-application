@@ -1,0 +1,56 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzTheme="light" nzCollapsible nzWidth="256px" nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    
+    <!-- sidebar_logo -->
+    <div class="sidebar-logo">
+      <a href="#">
+        <h1>AWS DASHBOARD</h1>
+      </a>
+    </div>
+
+    <!-- menu_compute-->
+    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Compute Engine" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/compute/ec2">EC2</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/compute/elastic-beanstalk">Elastic Beanstalk</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/compute/serverless-app-repo">Serverless App Repository</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Networking & Security" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/ns/iam">IAM</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/ns/vpc">VPC</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
