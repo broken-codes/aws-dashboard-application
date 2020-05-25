@@ -14,6 +14,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { DInstanceStateCounterComponent } from './components/compute/ec2/d-instance-state-counter/d-instance-state-counter.component';
 import { IconsProviderModuleModule } from './modules/icons-provider-module/icons-provider-module.module';
 import { NgZorroModuleModule } from './modules/ng-zorro-module/ng-zorro-module.module';
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 
 registerLocaleData(en);
 
@@ -21,7 +22,8 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     HomePageComponent,
-    DInstanceStateCounterComponent
+    DInstanceStateCounterComponent,
+    DashboardPageComponent
   ],
   imports: [
     BrowserModule,
