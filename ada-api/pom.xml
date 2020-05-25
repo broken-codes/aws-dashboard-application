@@ -82,7 +82,7 @@
 							<outputDirectory>${build.directory}/classes/static</outputDirectory>
 							<resources>
 								<resource>
-									<directory>../ada-ui/dist/ada-frontend</directory>
+									<directory>../ada-frontend/dist/ada-frontend</directory>
 								</resource>
 							</resources>
 						</configuration>

@@ -1,0 +1,25 @@
+<div class="columns">
+    <div class="column">
+        <nz-table #listOfVpcBasicInformationTable [nzData]="listOfVpcBasicInformation">
+            <thead>
+                <tr>
+                    <th>VPC ID</th>
+                    <th>Name</th>
+                    <th>IPv4 CIDR</th>
+                    <th>Default</th>
+                    <th>Availability State</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let info of listOfVpcBasicInformation">
+                    <td>{{ info.vpcId }}</td>
+                    <td>{{ info.name }}</td>
+                    <td>{{ info.ipv4CIDR }}</td>
+                    <td>{{ info.isDefaultVPC ? "YES" : "NO" }}</td>
+                    <td>{{ info.state.toUpperCase() }}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+    <!-- <div class="column"></div> -->
+</div>

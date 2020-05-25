@@ -18,6 +18,7 @@ import { DInstanceStateCounterComponent } from './components/compute/ec2/d-insta
 import { IconsProviderModuleModule } from './modules/icons-provider-module/icons-provider-module.module';
 import { NgZorroModuleModule } from './modules/ng-zorro-module/ng-zorro-module.module';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
+import { DVpcInfoComponent } from './components/ns/vpc/d-vpc-info/d-vpc-info.component';
 
 registerLocaleData(en);
 
@@ -26,7 +27,8 @@ registerLocaleData(en);
     AppComponent,
     HomePageComponent,
     DInstanceStateCounterComponent,
-    DashboardPageComponent
+    DashboardPageComponent,
+    DVpcInfoComponent
   ],
   imports: [
     BrowserModule,

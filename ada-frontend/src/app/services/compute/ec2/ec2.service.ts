@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import { BaseConfigurations } from 'src/app/data/base-configurations';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Ec2Service {
 
-  constructor(private httpClient: HttpClient) { }
+  private baseUrl = `${BaseConfigurations.baseUrl}/api/compute/ec2`
+
+  constructor() { }
 
   getEc2InstanceStateCount(): Observable<any> {
     return Observable.create((observer) => {
-      const ec2InstanceStateCounterProvidingEventSource = new EventSource('http://localhost:8080/api/compute/ec2/instances/counter');
+      const ec2InstanceStateCounterProvidingEventSource = new EventSource(this.generateUrl('/instances/counter'));
       ec2InstanceStateCounterProvidingEventSource.onmessage = (event) => {
         console.log("Event" + event);
         observer.next(event.data);
@@ -21,4 +23,6 @@ export class Ec2Service {
       return () => ec2InstanceStateCounterProvidingEventSource.close();
     });
   }
+
+  generateUrl = (url: string) => `${this.baseUrl}${url}`;
 }
