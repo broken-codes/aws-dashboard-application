@@ -1,0 +1,33 @@
+<div class="columns">
+    <div class="column">
+      <nz-table #listOfRdsBasicInformationTable [nzData]="listOfRdsBasicInformation">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Vpc Id</th>
+          <th>Engine</th>
+          <th>Engine Version</th>
+          <th>Status</th>
+          <th>Endpoint</th>
+          <th>Availability Zone</th>
+          <th>Instance ARN</th>
+          <th>Created On</th>
+          <th>Subnet Group</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let info of listOfRdsBasicInformation">
+          <td>{{ info.dbId }}</td>
+          <td>{{ info.associatedVpcId }}</td>
+          <td>{{ info.engine }}</td>
+          <td>{{ info.engineVersion }}</td>
+          <td>{{ info.endpoint }}</td>
+          <td>{{ info.availabilityZone }}</td>
+          <td>{{ info.dbInstanceArn }}</td>
+          <td>{{ info.instanceCreationTime }}</td>
+          <td>{{ info.dbSubnetGroupName }}</td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>

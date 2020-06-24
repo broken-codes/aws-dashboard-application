@@ -3,6 +3,8 @@ package org.brokencodes.tutorials.ada.apis.services.impl.ns;
 import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.model.DescribeVpcsRequest;
 import lombok.RequiredArgsConstructor;
+import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.RouteTableInformation;
+import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.SubnetInformation;
 import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.VPCBasicInformation;
 import org.brokencodes.tutorials.ada.apis.services.apis.ns.IVPCService;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,34 @@ public class VPCService implements IVPCService {
                         .state(vpc.getState())
                         .build());
         return Flux.fromStream(vpcInformationStream);
+    }
+
+    @Override
+    public Flux<SubnetInformation> getSubnetInformation() {
+        Stream<SubnetInformation> subnetInformationStream = ec2Client.describeSubnets()
+                .getSubnets()
+                .stream()
+                .map(subnet -> SubnetInformation.builder()
+                        .ipv4Cidr(subnet.getCidrBlock())
+                        .availabilityZone(subnet.getAvailabilityZone())
+                        .availableIpv4AddressCount(subnet.getAvailableIpAddressCount())
+                        .isDefaultForAz(subnet.isDefaultForAz())
+                        .state(subnet.getState())
+                        .ownerId(subnet.getOwnerId())
+                        .subnetArn(subnet.getSubnetArn())
+                        .build());
+        return Flux.fromStream(subnetInformationStream);
+    }
+
+    @Override
+    public Flux<RouteTableInformation> getRouteTableInformation() {
+        Stream<RouteTableInformation> routeTableInformationStream = ec2Client.describeRouteTables().getRouteTables().stream()
+                .map(routeTable -> RouteTableInformation.builder()
+                        .routeTableId(routeTable.getRouteTableId())
+                        .owner(routeTable.getOwnerId())
+                        .vpcId(routeTable.getVpcId())
+                        .build());
+        return Flux.fromStream(routeTableInformationStream);
     }
 
 }

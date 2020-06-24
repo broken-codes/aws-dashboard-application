@@ -1,0 +1,30 @@
+<div class="columns">
+  <div class="column">
+    <nz-table #listOfSubnetsInformationTable [nzData]="listOfSubnetsInformation">
+      <thead>
+      <tr>
+        <th>VPC ID</th>
+        <th>IPv4 CIDR</th>
+        <th>Available IP Address Count</th>
+        <th>Default</th>
+        <th>Availability Zone</th>
+        <th>State</th>
+        <th>Owner</th>
+        <th>Subnet ARN</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let info of listOfSubnetsInformation">
+        <td>{{ info.vpcId }}</td>
+        <td>{{ info.ipv4Cidr }}</td>
+        <td>{{ info.availableIpv4AddressCount }}</td>
+        <td>{{ info.isDefaultForAz ? "YES" : "NO" }}</td>
+        <td>{{ info.availabilityZone }}</td>
+        <td>{{ info.state }}</td>
+        <td>{{ info.ownerId }}</td>
+        <td>{{ info.subnetArn }}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

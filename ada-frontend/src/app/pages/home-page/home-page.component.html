@@ -1,17 +1,17 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar" nzTheme="light" nzCollapsible nzWidth="256px" nzBreakpoint="md"
-    [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+  <nz-sider [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" class="menu-sidebar" nzBreakpoint="md" nzCollapsible
+            nzTheme="light" nzWidth="256px">
 
     <!-- sidebar_logo -->
     <div class="sidebar-logo">
       <a href="#">
-        <img src="assets/aws-dashboard-application-logo.png" alt="ADA_LOGO"><span class="logo-text">awsdash</span>
+        <img alt="ADA_LOGO" src="assets/wu.png" width="100px"><span class="logo-text">Western Union</span>
       </a>
     </div>
 
     <!-- menu_compute-->
-    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Compute Engine" nzIcon="cloud-server">
+    <ul [nzInlineCollapsed]="isCollapsed" nz-menu nzMode="inline">
+      <li nz-submenu nzIcon="cloud-server" nzOpen nzTitle="Compute Engine">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/compute/ec2">EC2</a>
@@ -26,14 +26,40 @@
       </li>
     </ul>
 
-    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Networking & Security" nzIcon="apartment">
+    <ul [nzInlineCollapsed]="isCollapsed" nz-menu nzMode="inline">
+      <li nz-submenu nzIcon="apartment" nzOpen nzTitle="Networking & Security">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/ns/iam">IAM</a>
           </li>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/ns/vpc">VPC</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/ns/vpc/subnets">Subnets</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/ns/vpc/route-tables">Route Tables</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul [nzInlineCollapsed]="isCollapsed" nz-menu nzMode="inline">
+      <li nz-submenu nzIcon="apartment" nzOpen nzTitle="S3 Storage">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/s3/basic-information">S3 Basic Information</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul [nzInlineCollapsed]="isCollapsed" nz-menu nzMode="inline">
+      <li nz-submenu nzIcon="apartment" nzOpen nzTitle="Relational Database Service">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/rds/information">Information</a>
           </li>
         </ul>
       </li>
@@ -42,9 +68,10 @@
   <nz-layout>
     <nz-header>
       <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+        <span (click)="isCollapsed = !isCollapsed" class="header-trigger">
+          <i [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" class="trigger" nz-icon></i>
         </span>
+        <span class="app-name">AWS DASHBOARD</span>
       </div>
     </nz-header>
     <nz-content>

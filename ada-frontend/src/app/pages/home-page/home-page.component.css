@@ -77,12 +77,16 @@
   .inner-content {
     padding: 24px;
     background: #fff;
-    height: 100%;
+  }
+
+  .app-name {
+    font-size: 1.3em;
+    font-weight: bold;
   }
 
   .logo-text {
     padding-left: 5px;
-    font-size: 1.3em;
+    font-size: 1.05em;
     font-weight: bold;
     color: white;
   }

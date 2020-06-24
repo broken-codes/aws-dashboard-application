@@ -1,0 +1,20 @@
+<div class="columns">
+    <div class="column">
+      <nz-table #listOfS3BasicInformationTable [nzData]="listOfS3BasicInformation">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Created On</th>
+          <th>Owner</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let info of listOfS3BasicInformation">
+          <td>{{ info.name }}</td>
+          <td>{{ info.createdOn }}</td>
+          <td>{{ info.owner }}</td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>

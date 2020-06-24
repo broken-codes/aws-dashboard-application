@@ -1,0 +1,21 @@
+<div class="columns">
+    <div class="column">
+      <nz-table #listOfRouteTableInformationTable [nzData]="listOfRouteTableInformation">
+        <thead>
+        <tr>
+          <th>Route Table Id</th>
+          <th>VPC Id</th>
+          <th>Owner</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let info of listOfRouteTableInformation">
+          <td>{{ info.routeTableId }}</td>
+          <td>{{ info.vpcId }}</td>
+          <td>{{ info.ownerId }}</td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+  

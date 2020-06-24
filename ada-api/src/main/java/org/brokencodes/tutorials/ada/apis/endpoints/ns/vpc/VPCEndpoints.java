@@ -1,6 +1,8 @@
 package org.brokencodes.tutorials.ada.apis.endpoints.ns.vpc;
 
 import lombok.RequiredArgsConstructor;
+import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.RouteTableInformation;
+import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.SubnetInformation;
 import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.VPCBasicInformation;
 import org.brokencodes.tutorials.ada.apis.services.apis.ns.IVPCService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,4 +24,15 @@ public class VPCEndpoints {
                 .log();
     }
 
+    @GetMapping("/subnets")
+    public Flux<SubnetInformation> getSubnetInformation() {
+        return vpcService.getSubnetInformation()
+                .log();
+    }
+
+    @GetMapping("/route-tables")
+    public Flux<RouteTableInformation> getRouteTableInformation() {
+        return vpcService.getRouteTableInformation()
+                .log();
+    }
 }

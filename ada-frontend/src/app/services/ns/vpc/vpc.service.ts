@@ -22,5 +22,23 @@ export class VpcService {
     });
   }
 
+  getSubnetsInformation(): Observable<any> {
+    return Observable.create((observer) => {
+      const subnetsInformationProvidingEventSource = new EventSource(this.generateUrl('/subnets'));
+      subnetsInformationProvidingEventSource.onmessage = (event) => observer.next(event.data);
+      subnetsInformationProvidingEventSource.onerror = (error) => observer.complete();
+      return () => subnetsInformationProvidingEventSource.close();
+    });
+  }
+
+  getRouteTablesInformation(): Observable<any> {
+    return Observable.create((observer) => {
+      const routeTableInformationProvidingEventSource = new EventSource(this.generateUrl('/route-tables'));
+      routeTableInformationProvidingEventSource.onmessage = (event) => observer.next(event.data);
+      routeTableInformationProvidingEventSource.onerror = (error) => observer.complete();
+      return () => routeTableInformationProvidingEventSource.close();
+    });
+  }
+
   generateUrl = (url: string) => `${this.baseUrl}${url}`;
 }

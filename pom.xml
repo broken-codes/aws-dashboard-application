@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.brokencodes.tutorials.ada</groupId>
-	<artifactId>aws-dashboard-application</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>aws-dashboard-application</name>
-	<description>A dashboard for AWS</description>
-	<packaging>pom</packaging>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.brokencodes.tutorials.ada</groupId>
+    <artifactId>aws-dashboard-application</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>aws-dashboard-application</name>
+    <description>A dashboard for AWS</description>
+    <packaging>pom</packaging>
 
-	<properties>
-		<java.version>1.8</java.version>
-		<aws-java-sdk.version>1.11.782</aws-java-sdk.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<vavr.version>1.0.0-alpha-3</vavr.version>
-	</properties>
+    <properties>
+        <java.version>1.8</java.version>
+        <aws-java-sdk.version>1.11.782</aws-java-sdk.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <vavr.version>1.0.0-alpha-3</vavr.version>
+    </properties>
 
-	<modules>
-		<module>ada-frontend</module>
-		<module>ada-api</module>
-	</modules>
+    <modules>
+        <module>ada-frontend</module>
+        <module>ada-api</module>
+    </modules>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>2.3.0.RELEASE</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.amazonaws</groupId>
-				<artifactId>aws-java-sdk</artifactId>
-				<version>${aws-java-sdk.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>io.vavr</groupId>
-				<artifactId>vavr</artifactId>
-				<version>${vavr.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.3.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk</artifactId>
+                <version>${aws-java-sdk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.vavr</groupId>
+                <artifactId>vavr</artifactId>
+                <version>${vavr.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-	<profiles>
-		<profile>
-			<id>build-api</id>
-			<modules>
-				<module>ada-api</module>
-			</modules>
-		</profile>
-		<profile>
-			<id>build-all</id>
-			<modules>
-				<module>ada-ui</module>
-				<module>ada-api</module>
-			</modules>
-		</profile>
-	</profiles>
+    <profiles>
+        <profile>
+            <id>build-api</id>
+            <modules>
+                <module>ada-api</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>build-all</id>
+            <modules>
+                <module>ada-frontend</module>
+                <module>ada-api</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>

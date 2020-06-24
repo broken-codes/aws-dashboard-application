@@ -1,3 +1,3 @@
 export class BaseConfigurations {
-    static baseUrl = ""
+    static baseUrl = "http://localhost:8080"
 }

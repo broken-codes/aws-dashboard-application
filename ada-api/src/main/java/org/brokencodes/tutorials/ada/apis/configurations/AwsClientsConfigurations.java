@@ -5,6 +5,10 @@ import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.AmazonEC2ClientBuilder;
+import com.amazonaws.services.rds.AmazonRDS;
+import com.amazonaws.services.rds.AmazonRDSClientBuilder;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,4 +33,25 @@ public class AwsClientsConfigurations {
                 .withRegion(region)
                 .build();
     }
+
+    @Bean
+    public AmazonRDS rdsClient(
+            AWSCredentials credentials,
+            @Value("${aws-dash.aws.region}") String region) {
+        return AmazonRDSClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withRegion(region)
+                .build();
+    }
+
+    @Bean
+    public AmazonS3 s3Client(
+            AWSCredentials credentials,
+            @Value("${aws-dash.aws.region}") String region) {
+        return AmazonS3ClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withRegion(region)
+                .build();
+    }
+
 }

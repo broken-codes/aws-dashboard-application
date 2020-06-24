@@ -19,6 +19,14 @@ import { IconsProviderModuleModule } from './modules/icons-provider-module/icons
 import { NgZorroModuleModule } from './modules/ng-zorro-module/ng-zorro-module.module';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { DVpcInfoComponent } from './components/ns/vpc/d-vpc-info/d-vpc-info.component';
+import { SubnetsComponent } from './pages/vpc/subnets/subnets.component';
+import { CSubnetsComponent } from './components/ns/vpc/c-subnets/c-subnets.component';
+import { RouteTablesComponent } from './pages/vpc/route-tables/route-tables.component';
+import { CRouteTablesComponent } from './components/ns/vpc/c-route-tables/c-route-tables.component';
+import { PageRdsComponent } from './pages/page-rds/page-rds.component';
+import { CRdsInformationComponent } from './components/rds/c-rds-information/c-rds-information.component';
+import { S3PageComponentComponent } from './pages/s3-page-component/s3-page-component.component';
+import { CS3BasicInformationComponent } from './components/c-s3-basic-information/c-s3-basic-information.component';
 
 registerLocaleData(en);
 
@@ -28,7 +36,15 @@ registerLocaleData(en);
     HomePageComponent,
     DInstanceStateCounterComponent,
     DashboardPageComponent,
-    DVpcInfoComponent
+    DVpcInfoComponent,
+    SubnetsComponent,
+    CSubnetsComponent,
+    RouteTablesComponent,
+    CRouteTablesComponent,
+    PageRdsComponent,
+    CRdsInformationComponent,
+    S3PageComponentComponent,
+    CS3BasicInformationComponent
   ],
   imports: [
     BrowserModule,

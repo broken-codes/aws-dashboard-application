@@ -15,23 +15,23 @@ import static org.mockito.Mockito.mock;
 @Profile("run-integration-tests")
 class AwsClientsConfigurationsTest {
 
-    @InjectMocks
-    private AwsClientsConfigurations sut;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
-
-    @Test
-    void awsCredentials() {
-        AWSCredentials awsCredentials = sut.awsCredentials("1", "1");
-        assertThat(awsCredentials).isNotNull();
-    }
-
-    @Test
-    void ec2Client() {
-        AWSCredentials mockedAwsCredentials = mock(AWSCredentials.class);
-    }
+//    @InjectMocks
+//    private AwsClientsConfigurations sut;
+//
+//    @BeforeEach
+//    void setUp() {
+//        MockitoAnnotations.initMocks(this);
+//    }
+//
+//    @Test
+//    void awsCredentials() {
+//        AWSCredentials awsCredentials = sut.awsCredentials("1", "1");
+//        assertThat(awsCredentials).isNotNull();
+//    }
+//
+//    @Test
+//    void ec2Client() {
+//        AWSCredentials mockedAwsCredentials = mock(AWSCredentials.class);
+//    }
 
 }

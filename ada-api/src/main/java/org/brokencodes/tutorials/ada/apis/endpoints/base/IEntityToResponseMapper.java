@@ -5,4 +5,5 @@ import reactor.core.publisher.Mono;
 public interface IEntityToResponseMapper<E, R> {
 
     Mono<R> mapEntityToResponse(Mono<E> entity);
+
 }
