@@ -1,0 +1,26 @@
+<div class="columns">
+    <div class="column">
+      <nz-table #listOfHostedZoneBasicInformationTable [nzData]="listOfHostedZonesBasicInformation">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Caller Reference</th>
+          <th>Resource Recordset</th>
+          <th>Is Private</th>
+          <th>Service Principal</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let info of listOfHostedZonesBasicInformation">
+          <td>{{ info.id }}</td>
+          <td>{{ info.name }}</td>
+          <td>{{ info.callerReference }}</td>
+          <td>{{ info.resourceRecordSetCount }}</td>
+          <td>{{ info.isPrivateZone ? "Private Zone" : "Not Private Zone" }}</td>
+          <td>{{ info.servicePrincipal }}</td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>

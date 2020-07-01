@@ -7,6 +7,8 @@ import com.amazonaws.services.ec2.AmazonEC2;
 import com.amazonaws.services.ec2.AmazonEC2ClientBuilder;
 import com.amazonaws.services.rds.AmazonRDS;
 import com.amazonaws.services.rds.AmazonRDSClientBuilder;
+import com.amazonaws.services.route53.AmazonRoute53;
+import com.amazonaws.services.route53.AmazonRoute53ClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,4 +56,13 @@ public class AwsClientsConfigurations {
                 .build();
     }
 
+    @Bean
+    public AmazonRoute53 route53Client(
+            AWSCredentials credentials,
+            @Value("${aws-dash.aws.region}") String region) {
+        return AmazonRoute53ClientBuilder.standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withRegion(region)
+                .build();
+    }
 }
