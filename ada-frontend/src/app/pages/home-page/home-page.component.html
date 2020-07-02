@@ -64,6 +64,16 @@
         </ul>
       </li>
     </ul>
+
+    <ul [nzInlineCollapsed]="isCollapsed" nz-menu nzMode="inline">
+      <li nz-submenu nzIcon="apartment" nzOpen nzTitle="Amazon Route 53">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/r53/hosted-zones">Hosted Zones</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </nz-sider>
   <nz-layout>
     <nz-header>
