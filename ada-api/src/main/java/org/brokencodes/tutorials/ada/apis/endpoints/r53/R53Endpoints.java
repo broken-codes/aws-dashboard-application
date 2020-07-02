@@ -19,7 +19,7 @@ public class R53Endpoints {
 
     @GetMapping("/hosted-zones")
     public Flux<HostedZoneBasicInformation> getHostedZoneBasicInformation() {
-        .log.info("Obtained request for displaying hosted zones");
+        log.info("Obtained request for displaying hosted zones");
         return ir53Service.getHostedZoneBasicInformation()
                 .log();
     }
