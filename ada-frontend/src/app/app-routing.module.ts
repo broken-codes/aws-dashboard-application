@@ -6,6 +6,7 @@ import { RouteTablesComponent } from './pages/vpc/route-tables/route-tables.comp
 import { PageRdsComponent } from './pages/page-rds/page-rds.component';
 import { S3PageComponentComponent } from './pages/s3-page-component/s3-page-component.component';
 import { R53PageComponent } from './pages/r53/r53-page/r53-page.component';
+import { VpcPeeringComponent } from './pages/vpc/vpc-peering/vpc-peering.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'ns/vpc/route-tables', component: RouteTablesComponent },
   { path: 'rds/information', component: PageRdsComponent },
   { path: 's3/basic-information', component: S3PageComponentComponent },
-  { path: 'r53/hosted-zones', component: R53PageComponent }
+  { path: 'r53/hosted-zones', component: R53PageComponent },
+  { path: 'ns/vpc/vpc-peering', component: VpcPeeringComponent }
 ];
 
 @NgModule({

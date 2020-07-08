@@ -19,7 +19,7 @@ public class R53Service implements IR53Service {
 
     public Flux<HostedZoneBasicInformation> getHostedZoneBasicInformation() {
         Stream<HostedZoneBasicInformation> hostedZoneBasicInformationStream = r53Client.listHostedZones().getHostedZones().stream()
-                .peek(item -> log.info(item))
+                .peek(item -> log.info("Obtained hosted zone: {}", item))
                 .map(hostedZone -> HostedZoneBasicInformation.builder()
                         .id(hostedZone.getId())
                         .callerReference(hostedZone.getCallerReference())

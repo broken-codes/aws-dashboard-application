@@ -40,5 +40,14 @@ export class VpcService {
     });
   }
 
+  getVpcPeeringInformation(): Observable<any> {
+    return Observable.create((observer) => {
+      const vpcPeeringInformationProvidingEventSource = new EventSource(this.generateUrl('/vpc-peering'));
+      vpcPeeringInformationProvidingEventSource.onmessage = (event) => observer.next(event.data);
+      vpcPeeringInformationProvidingEventSource.onerror = (error) => observer.complete();
+      return () => vpcPeeringInformationProvidingEventSource.close();
+    });
+  }
+
   generateUrl = (url: string) => `${this.baseUrl}${url}`;
 }

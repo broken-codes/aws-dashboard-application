@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.RouteTableInformation;
 import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.SubnetInformation;
 import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.VPCBasicInformation;
+import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.VpcPeeringConnectionInformation;
 import org.brokencodes.tutorials.ada.apis.services.apis.ns.IVPCService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -61,6 +62,32 @@ public class VPCService implements IVPCService {
         return Flux.fromStream(routeTableInformationStream);
     }
 
+    @Override
+    public Flux<VpcPeeringConnectionInformation> getVpcPeeringConnectionInformation() {
+        Stream<VpcPeeringConnectionInformation> vpcPeeringConnectionInformationStream = ec2Client.describeVpcPeeringConnections().getVpcPeeringConnections().stream()
+                .map(vpcPeeringConnection -> VpcPeeringConnectionInformation.builder()
+                        .id(vpcPeeringConnection.getVpcPeeringConnectionId())
+                        .acceptingVpcId(vpcPeeringConnection.getAccepterVpcInfo().getVpcId())
+                        .acceptingConnectionOwner(vpcPeeringConnection.getAccepterVpcInfo().getOwnerId())
+                        .acceptingConnectionCidr(vpcPeeringConnection.getAccepterVpcInfo().getCidrBlock())
+                        .acceptingRegion(vpcPeeringConnection.getAccepterVpcInfo().getRegion())
+                        .acceptingAllowsDnsResolutionFromRemote(vpcPeeringConnection.getAccepterVpcInfo().getPeeringOptions().isAllowDnsResolutionFromRemoteVpc())
+                        .acceptingAllowEgressFromLocalClassicLinkToRemoteVpc(vpcPeeringConnection.getAccepterVpcInfo().getPeeringOptions().getAllowEgressFromLocalClassicLinkToRemoteVpc())
+                        .acceptingAllowEgressFromLocalVpcToRemoteClassicLink(vpcPeeringConnection.getAccepterVpcInfo().getPeeringOptions().getAllowEgressFromLocalVpcToRemoteClassicLink())
 
+                        .requesterVpcId(vpcPeeringConnection.getRequesterVpcInfo().getVpcId())
+                        .requesterConnectionOwner(vpcPeeringConnection.getRequesterVpcInfo().getOwnerId())
+                        .requesterConnectionCidr(vpcPeeringConnection.getRequesterVpcInfo().getCidrBlock())
+                        .requesterRegion(vpcPeeringConnection.getRequesterVpcInfo().getRegion())
+                        .requesterAllowsDnsResolutionFromRemote(vpcPeeringConnection.getRequesterVpcInfo().getPeeringOptions().isAllowDnsResolutionFromRemoteVpc())
+                        .requesterAllowEgressFromLocalClassicLinkToRemoteVpc(vpcPeeringConnection.getRequesterVpcInfo().getPeeringOptions().getAllowEgressFromLocalClassicLinkToRemoteVpc())
+                        .requesterAllowEgressFromLocalVpcToRemoteClassicLink(vpcPeeringConnection.getRequesterVpcInfo().getPeeringOptions().getAllowEgressFromLocalVpcToRemoteClassicLink())
+
+                        .validity(vpcPeeringConnection.getExpirationTime().toString())
+                        .status(vpcPeeringConnection.getStatus().getMessage())
+
+                        .build());
+        return Flux.fromStream(vpcPeeringConnectionInformationStream);
+    }
 
 }

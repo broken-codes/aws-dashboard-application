@@ -29,6 +29,8 @@ import { S3PageComponentComponent } from './pages/s3-page-component/s3-page-comp
 import { CS3BasicInformationComponent } from './components/c-s3-basic-information/c-s3-basic-information.component';
 import { R53PageComponent } from './pages/r53/r53-page/r53-page.component';
 import { R53HostedZonesBasicInformationComponent } from './components/r53/r53-hosted-zones-basic-information/r53-hosted-zones-basic-information.component';
+import { CVpcPeeringComponent } from './components/ns/vpc/c-vpc-peering/c-vpc-peering.component';
+import { VpcPeeringComponent } from './pages/vpc/vpc-peering/vpc-peering.component';
 
 registerLocaleData(en);
 
@@ -48,7 +50,9 @@ registerLocaleData(en);
     S3PageComponentComponent,
     CS3BasicInformationComponent,
     R53PageComponent,
-    R53HostedZonesBasicInformationComponent
+    R53HostedZonesBasicInformationComponent,
+    CVpcPeeringComponent,
+    VpcPeeringComponent
   ],
   imports: [
     BrowserModule,

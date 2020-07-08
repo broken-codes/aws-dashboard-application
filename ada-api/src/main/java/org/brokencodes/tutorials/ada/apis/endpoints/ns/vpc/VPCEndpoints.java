@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.RouteTableInformation;
 import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.SubnetInformation;
 import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.VPCBasicInformation;
+import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.VpcPeeringConnectionInformation;
 import org.brokencodes.tutorials.ada.apis.services.apis.ns.IVPCService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,12 @@ public class VPCEndpoints {
     @GetMapping("/route-tables")
     public Flux<RouteTableInformation> getRouteTableInformation() {
         return vpcService.getRouteTableInformation()
+                .log();
+    }
+
+    @GetMapping("/vpc-peering")
+    public Flux<VpcPeeringConnectionInformation> getVpcPeeringConnectionInformation() {
+        return vpcService.getVpcPeeringConnectionInformation()
                 .log();
     }
 }

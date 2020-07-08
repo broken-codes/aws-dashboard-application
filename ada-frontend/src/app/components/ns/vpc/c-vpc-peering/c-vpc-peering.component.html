@@ -1,0 +1,52 @@
+<div class="columns">
+    <div class="column">
+      <nz-table #listOfVpcPeeringInformationTable [nzData]="listOfVpcPeeringInformation">
+        <thead>
+        <tr>
+          <th>VPC ID</th>
+            
+          <th>Validity</th>
+          <th>Status Message</th>
+
+          <th>Accepter Id</th>
+          <th>Accepter Owner</th>
+          <th>Accepter CIDR</th>
+          <th>Accepter Region</th>
+          <th>Accepter Allows DRFR</th>
+          <th>Accepter Allows ELRV</th>
+          <th>Accepter Allows ERVL</th>
+
+          <th>Requester Id</th>
+          <th>Requester Owner</th>
+          <th>Requester CIDR</th>
+          <th>Requester Region</th>
+          <th>Requester Allows DRFR</th>
+          <th>Requester Allows ELRV</th>
+          <th>Requester Allows ERVL</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let info of listOfVpcPeeringInformation">
+            <td>{{ info.id }}</td>
+            <td>{{ info.validity }}</td>
+            <td>{{ info.status }}</td>
+            <td>{{ info.acceptingVpcId }}</td>
+            <td>{{ info.acceptingConnectionOwner }}</td>
+            <td>{{ info.acceptingConnectionCidr }}</td>
+            <td>{{ info.acceptingRegion }}</td>
+            <td>{{ info.acceptingAllowsDnsResolutionFromRemote }}</td>
+            <td>{{ info.acceptingAllowEgressFromLocalClassicLinkToRemoteVpc }}</td>
+            <td>{{ info.acceptingAllowEgressFromLocalVpcToRemoteClassicLink }}</td>
+            <td>{{ info.requesterAllowsDnsResolutionFromRemote }}</td>
+            <td>{{ info.requesterAllowEgressFromLocalClassicLinkToRemoteVpc }}</td>
+            <td>{{ info.requesterAllowEgressFromLocalVpcToRemoteClassicLink }}</td>
+            <td>{{ info.requesterVpcId }}</td>
+            <td>{{ info.requesterConnectionOwner }}</td>
+            <td>{{ info.requesterConnectionCidr }}</td>
+            <td>{{ info.requesterRegion }}</td>            
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+  
