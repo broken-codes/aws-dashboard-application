@@ -5,5 +5,5 @@ import reactor.core.publisher.Flux;
 
 public interface IS3Service {
 
-    Flux<S3BasicInformation> getS3BasicInformation();
+    Flux<S3BasicInformation> getS3BasicInformation(String arn);
 }

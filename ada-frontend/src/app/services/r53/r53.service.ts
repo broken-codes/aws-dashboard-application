@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseConfigurations } from 'src/app/data/base-configurations';
 import { Observable } from 'rxjs/internal/Observable';
+import { ArnRolesService } from '../arn-roles.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class R53Service {
 
   private baseUrl = `${BaseConfigurations.baseUrl}/api/r53`
 
-  constructor() { }
+  constructor(private arnRoleService: ArnRolesService) { }
 
   getHostedZoneBasicInformation(): Observable<any> {
     return Observable.create((observer) => {
@@ -22,5 +23,5 @@ export class R53Service {
     });
   }
 
-  generateUrl = (url: string) => `${this.baseUrl}${url}`;
+  generateUrl = (url: string) => `${this.baseUrl}${url}/?arn=${this.arnRoleService.getRole()}`;
 }

@@ -1,10 +1,10 @@
 package org.brokencodes.tutorials.ada.apis.services.impl.rds;
 
 import com.amazonaws.services.rds.AmazonRDS;
-import com.amazonaws.services.rds.AmazonRDSClient;
 import org.brokencodes.tutorials.ada.apis.beans.rds.RdsBasicInformation;
 import org.brokencodes.tutorials.ada.apis.services.apis.rds.IRdsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.brokencodes.tutorials.ada.apis.services.clients.AwsClientFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
@@ -13,11 +13,12 @@ import java.util.stream.Stream;
 @Service
 public class RdsService implements IRdsService {
 
-    @Autowired
-    private AmazonRDS rdsClient;
+    @Value("${aws-dash.aws.region}")
+    private String region;
 
     @Override
-    public Flux<RdsBasicInformation> getRdsBasicInformation() {
+    public Flux<RdsBasicInformation> getRdsBasicInformation(String arn) {
+        AmazonRDS rdsClient = AwsClientFactory.rdsClient(arn, region);
         Stream<RdsBasicInformation> rdsBasicInformationStream = rdsClient.describeDBInstances().getDBInstances().stream()
                 .map(dbInstance -> RdsBasicInformation.builder()
                         .dbId(dbInstance.getDBInstanceIdentifier())

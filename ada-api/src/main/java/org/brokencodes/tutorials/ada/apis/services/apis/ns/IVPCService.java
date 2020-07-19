@@ -8,11 +8,11 @@ import reactor.core.publisher.Flux;
 
 public interface IVPCService {
 
-    Flux<VPCBasicInformation> getVPCInformation();
+    Flux<VPCBasicInformation> getVPCInformation(String arn);
 
-    Flux<SubnetInformation> getSubnetInformation();
+    Flux<SubnetInformation> getSubnetInformation(String arn);
 
-    Flux<RouteTableInformation> getRouteTableInformation();
+    Flux<RouteTableInformation> getRouteTableInformation(String arn);
 
-    Flux<VpcPeeringConnectionInformation> getVpcPeeringConnectionInformation();
+    Flux<VpcPeeringConnectionInformation> getVpcPeeringConnectionInformation(String arn);
 }

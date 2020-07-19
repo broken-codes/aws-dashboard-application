@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { BaseConfigurations } from 'src/app/data/base-configurations';
+import { ArnRolesService } from '../../arn-roles.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class Ec2Service {
 
   private baseUrl = `${BaseConfigurations.baseUrl}/api/compute/ec2`
 
-  constructor() { }
+  constructor(private arnRoleService: ArnRolesService) { }
 
   getEc2InstanceStateCount(): Observable<any> {
     return Observable.create((observer) => {
@@ -24,5 +25,5 @@ export class Ec2Service {
     });
   }
 
-  generateUrl = (url: string) => `${this.baseUrl}${url}`;
+  generateUrl = (url: string) => `${this.baseUrl}${url}?arn=${this.arnRoleService.getRole()}`;
 }

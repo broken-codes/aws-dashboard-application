@@ -85,6 +85,14 @@
           <i [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" class="trigger" nz-icon></i>
         </span>
         <span class="app-name">AWS DASHBOARD</span>
+          <div id="roles" class="select is-rounded is-small is-pulled-right">
+            <select [(ngModel)]="selectedRole" (change)="onRoleChange($event)">
+              <option value="arn:aws:iam::517949891193:role/CA-ROL-APID">CA-ROL-APID</option>
+              <!-- <option value="arn:aws:iam::517949891193:role/CA-ROL-APID-1">CA-ROL-APID-1</option>
+              <option value="arn:aws:iam::517949891193:role/CA-ROL-APID-2">CA-ROL-APID-2</option>
+              <option value="arn:aws:iam::517949891193:role/CA-ROL-APID-3">CA-ROL-APID-3</option> -->
+            </select>
+          </div>  
       </div>
     </nz-header>
     <nz-content>

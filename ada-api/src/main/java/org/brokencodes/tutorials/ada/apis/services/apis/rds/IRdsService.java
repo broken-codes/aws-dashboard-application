@@ -5,5 +5,5 @@ import reactor.core.publisher.Flux;
 
 public interface IRdsService {
 
-    Flux<RdsBasicInformation> getRdsBasicInformation();
+    Flux<RdsBasicInformation> getRdsBasicInformation(String arn);
 }

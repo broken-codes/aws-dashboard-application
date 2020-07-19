@@ -4,7 +4,8 @@ import com.amazonaws.services.route53.AmazonRoute53;
 import lombok.extern.slf4j.Slf4j;
 import org.brokencodes.tutorials.ada.apis.beans.r53.HostedZoneBasicInformation;
 import org.brokencodes.tutorials.ada.apis.services.apis.r53.IR53Service;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.brokencodes.tutorials.ada.apis.services.clients.AwsClientFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
@@ -14,10 +15,11 @@ import java.util.stream.Stream;
 @Service
 public class R53Service implements IR53Service {
 
-    @Autowired
-    private AmazonRoute53 r53Client;
+    @Value("${aws-dash.aws.region}")
+    private String region;
 
-    public Flux<HostedZoneBasicInformation> getHostedZoneBasicInformation() {
+    public Flux<HostedZoneBasicInformation> getHostedZoneBasicInformation(String arn) {
+        AmazonRoute53 r53Client = AwsClientFactory.route53Client(arn, region);
         Stream<HostedZoneBasicInformation> hostedZoneBasicInformationStream = r53Client.listHostedZones().getHostedZones().stream()
                 .peek(item -> log.info("Obtained hosted zone: {}", item))
                 .map(hostedZone -> HostedZoneBasicInformation.builder()
@@ -30,4 +32,5 @@ public class R53Service implements IR53Service {
                         .build());
         return Flux.fromStream(hostedZoneBasicInformationStream);
     }
+
 }

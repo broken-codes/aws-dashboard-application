@@ -90,3 +90,8 @@
     font-weight: bold;
     color: white;
   }
+
+  #roles {
+    margin-right: 40px;
+    margin-top: 15px;
+  }

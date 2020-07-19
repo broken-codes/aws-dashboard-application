@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseConfigurations } from 'src/app/data/base-configurations';
 import { Observable } from 'rxjs';
+import { ArnRolesService } from '../arn-roles.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class S3ServiceService {
 
   private baseUrl = `${BaseConfigurations.baseUrl}/api/s3`
 
-  constructor() { }
+  constructor(private arnRoleService: ArnRolesService) { }
 
   getBasicS3Information(): Observable<any> {
     return Observable.create((observer) => {
@@ -22,5 +23,5 @@ export class S3ServiceService {
     });
   }
 
-  generateUrl = (url: string) => `${this.baseUrl}${url}`;
+  generateUrl = (url: string) => `${this.baseUrl}${url}/?${this.arnRoleService.getRole()}`;
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BaseConfigurations } from 'src/app/data/base-configurations';
+import { ArnRolesService } from '../../arn-roles.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class VpcService {
 
   private baseUrl = `${BaseConfigurations.baseUrl}/api/ns/vpc`
 
-  constructor() { }
+  constructor(private arnRoleService: ArnRolesService) { }
 
   getVpcBasicInformation(): Observable<any> {
     return Observable.create((observer) => {
@@ -49,5 +50,5 @@ export class VpcService {
     });
   }
 
-  generateUrl = (url: string) => `${this.baseUrl}${url}`;
+  generateUrl = (url: string) => `${this.baseUrl}${url}/?arn=${this.arnRoleService.getRole()}`;
 }

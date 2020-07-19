@@ -5,6 +5,6 @@ import reactor.core.publisher.Mono;
 
 public interface IEC2Service {
 
-    Mono<InstanceStateCounter> getInstanceStateCounter();
+    Mono<InstanceStateCounter> getInstanceStateCounter(String arn);
 
 }

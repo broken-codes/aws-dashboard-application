@@ -8,6 +8,8 @@ import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.SubnetInformation;
 import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.VPCBasicInformation;
 import org.brokencodes.tutorials.ada.apis.beans.ns.vpc.VpcPeeringConnectionInformation;
 import org.brokencodes.tutorials.ada.apis.services.apis.ns.IVPCService;
+import org.brokencodes.tutorials.ada.apis.services.clients.AwsClientFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
@@ -17,10 +19,12 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class VPCService implements IVPCService {
 
-    private final AmazonEC2 ec2Client;
+    @Value("${aws-dash.aws.region}")
+    private String region;
 
     @Override
-    public Flux<VPCBasicInformation> getVPCInformation() {
+    public Flux<VPCBasicInformation> getVPCInformation(String arn) {
+        AmazonEC2 ec2Client = AwsClientFactory.ec2Client(arn, region);
         DescribeVpcsRequest describeVpcsRequest = new DescribeVpcsRequest();
         Stream<VPCBasicInformation> vpcInformationStream = ec2Client.describeVpcs(describeVpcsRequest)
                 .getVpcs()
@@ -35,7 +39,8 @@ public class VPCService implements IVPCService {
     }
 
     @Override
-    public Flux<SubnetInformation> getSubnetInformation() {
+    public Flux<SubnetInformation> getSubnetInformation(String arn) {
+        AmazonEC2 ec2Client = AwsClientFactory.ec2Client(arn, region);
         Stream<SubnetInformation> subnetInformationStream = ec2Client.describeSubnets()
                 .getSubnets()
                 .stream()
@@ -52,7 +57,8 @@ public class VPCService implements IVPCService {
     }
 
     @Override
-    public Flux<RouteTableInformation> getRouteTableInformation() {
+    public Flux<RouteTableInformation> getRouteTableInformation(String arn) {
+        AmazonEC2 ec2Client = AwsClientFactory.ec2Client(arn, region);
         Stream<RouteTableInformation> routeTableInformationStream = ec2Client.describeRouteTables().getRouteTables().stream()
                 .map(routeTable -> RouteTableInformation.builder()
                         .routeTableId(routeTable.getRouteTableId())
@@ -63,7 +69,8 @@ public class VPCService implements IVPCService {
     }
 
     @Override
-    public Flux<VpcPeeringConnectionInformation> getVpcPeeringConnectionInformation() {
+    public Flux<VpcPeeringConnectionInformation> getVpcPeeringConnectionInformation(String arn) {
+        AmazonEC2 ec2Client = AwsClientFactory.ec2Client(arn, region);
         Stream<VpcPeeringConnectionInformation> vpcPeeringConnectionInformationStream = ec2Client.describeVpcPeeringConnections().getVpcPeeringConnections().stream()
                 .map(vpcPeeringConnection -> VpcPeeringConnectionInformation.builder()
                         .id(vpcPeeringConnection.getVpcPeeringConnectionId())

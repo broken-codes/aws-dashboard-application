@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
@@ -31,6 +31,7 @@ import { R53PageComponent } from './pages/r53/r53-page/r53-page.component';
 import { R53HostedZonesBasicInformationComponent } from './components/r53/r53-hosted-zones-basic-information/r53-hosted-zones-basic-information.component';
 import { CVpcPeeringComponent } from './components/ns/vpc/c-vpc-peering/c-vpc-peering.component';
 import { VpcPeeringComponent } from './pages/vpc/vpc-peering/vpc-peering.component';
+import { RoleAdderInterceptor } from './role-adder.interceptor';
 
 registerLocaleData(en);
 
@@ -64,7 +65,10 @@ registerLocaleData(en);
     NgZorroModuleModule,
     NgxChartsModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: HTTP_INTERCEPTORS, useClass: RoleAdderInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
