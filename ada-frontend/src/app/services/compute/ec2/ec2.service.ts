@@ -25,5 +25,17 @@ export class Ec2Service {
     });
   }
 
+  getTransitGateway(): Observable<any> {
+    return Observable.create((observer) => {
+      const transitGatewayProvidingEventSource = new EventSource(this.generateUrl('/gateways/transit'));
+      transitGatewayProvidingEventSource.onmessage = (event) => {
+        console.log("Event" + event);
+        observer.next(event.data);
+      };
+      transitGatewayProvidingEventSource.onerror = (error) => observer.complete();
+      return () => transitGatewayProvidingEventSource.close();
+    });
+  }
+
   generateUrl = (url: string) => `${this.baseUrl}${url}?arn=${this.arnRoleService.getRole()}`;
 }

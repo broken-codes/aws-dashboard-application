@@ -1,0 +1,40 @@
+<div class="columns">
+    <div class="column">
+        <nz-table #listOfTransitGatewayInformationTable [nzData]="listOfTransitGatewayInformation">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Owner Id</th>
+                    <th>State</th>
+                    <th>Tags</th>
+                    <th>ARN</th>
+                    <th>Created On</th>
+                    <th>AWS ASN</th>
+                    <th>Default Route Table Association</th>
+                    <th>DNS</th>
+                    <th>Multicast</th>
+                    <th>VPN EMCP</th>
+                    <th>Propogation Route Table Id</th>
+                    <th>Auto accept Shared Resource</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let info of listOfTransitGatewayInformation">
+                    <td>{{ info.id }}</td>
+                    <td>{{ info.ownerId }}</td>
+                    <td>{{ info.state }}</td>
+                    <td>{{ info.tags }}</td>
+                    <td>{{ info.arn }}</td>
+                    <td>{{ info.createdOn }}</td>
+                    <td>{{ info.amazonSideAsn }}</td>
+                    <td>{{ info.defaultRouteTableAssociation }}</td>
+                    <td>{{ info.dsnSupport }}</td>
+                    <td>{{ info.multicastSupport }}</td>
+                    <td>{{ info.vpnEcmpSupport }}</td>
+                    <td>{{ info.propagationDefaultRouteTableId }}</td>
+                    <td>{{ info.autoAcceptSharedAttachments }}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

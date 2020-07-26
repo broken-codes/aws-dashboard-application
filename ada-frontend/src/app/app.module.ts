@@ -32,6 +32,8 @@ import { R53HostedZonesBasicInformationComponent } from './components/r53/r53-ho
 import { CVpcPeeringComponent } from './components/ns/vpc/c-vpc-peering/c-vpc-peering.component';
 import { VpcPeeringComponent } from './pages/vpc/vpc-peering/vpc-peering.component';
 import { RoleAdderInterceptor } from './role-adder.interceptor';
+import { TransitGatewaysComponent } from './pages/transit-gateways/transit-gateways.component';
+import { CTransitGatewaysComponent } from './components/compute/c-transit-gateways/c-transit-gateways.component';
 
 registerLocaleData(en);
 
@@ -53,7 +55,9 @@ registerLocaleData(en);
     R53PageComponent,
     R53HostedZonesBasicInformationComponent,
     CVpcPeeringComponent,
-    VpcPeeringComponent
+    VpcPeeringComponent,
+    TransitGatewaysComponent,
+    CTransitGatewaysComponent
   ],
   imports: [
     BrowserModule,
